@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Properties from './pages/Properties';
-import Maintenance from './pages/Maintenance';
-import Contractors from './pages/Contractors';
 import Inventory from './pages/Inventory';
 import Finances from './pages/Finances';
 import Analytics from './pages/Analytics';
@@ -22,11 +20,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/finances" element={<Finances />} />
-              <Route path="/properties" element={<Properties />} />
-              <Route path="/maintenance" element={<Maintenance />} />
-              <Route path="/contractors" element={<Contractors />} />
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/analytics" element={<Analytics />} />
+              <Route path="/properties" element={<Properties />} />
               <Route path="/settings" element={<Settings />} />
               {/* Add a catch-all route */}
               <Route path="*" element={<Navigate to="/" replace />} />
