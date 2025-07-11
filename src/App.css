@@ -1,0 +1,79 @@
+.app-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.sidebar-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  backdrop-filter: blur(10px);
+}
+
+.expense-positive {
+  color: #10b981;
+}
+
+.expense-negative {
+  color: #ef4444;
+}
+
+.status-occupied {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-vacant {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-maintenance {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.inventory-low {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.inventory-medium {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.inventory-high {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+/* Sidebar animation */
+.sidebar-transition {
+  transition: width 0.3s ease-in-out;
+}
+
+.sidebar-icon-only {
+  width: 80px;
+}
+
+.sidebar-full {
+  width: 280px;
+}
+
+/* Main content transition */
+.content-transition {
+  transition: margin-left 0.3s ease-in-out;
+}
