@@ -134,8 +134,8 @@ const PropertyProfile = () => {
           </div>
           <div className="flex items-center space-x-4">
             <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(property.status)}`}>
-              {property.status}
-            </span>
+  {property.status}
+</span>
             <button
               onClick={() => navigate(`/properties`)}
               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
