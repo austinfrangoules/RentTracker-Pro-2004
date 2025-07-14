@@ -19,7 +19,6 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -57,8 +56,8 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
         className="flex items-center justify-between px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 bg-white min-w-[200px]"
       >
         <span className="truncate">{getDisplayText()}</span>
@@ -78,7 +77,7 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
           >
             <div className="p-2">
               {/* Select All Option */}
-              <div
+              <div 
                 onClick={handleSelectAll}
                 className="flex items-center justify-between p-2 hover:bg-gray-100 rounded cursor-pointer"
               >
@@ -89,9 +88,8 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
                   <SafeIcon icon={FiCheck} className="w-4 h-4 text-blue-600" />
                 )}
               </div>
-              
               <hr className="my-1" />
-              
+
               {/* Individual Properties */}
               {properties.map((property) => (
                 <div
@@ -105,7 +103,7 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
                   )}
                 </div>
               ))}
-              
+
               {properties.length === 0 && (
                 <div className="p-2 text-gray-500 text-sm">
                   No properties available
@@ -115,17 +113,14 @@ const MultiPropertyFilter = ({ properties, selectedProperties, onSelectionChange
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* Selected properties chips */}
       {selectedProperties.length > 1 && selectedProperties.length < properties.length && (
         <div className="flex flex-wrap gap-1 mt-2">
           {selectedProperties.map((propertyName) => (
-            <div
-              key={propertyName}
-              className="flex items-center space-x-1 bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs"
-            >
+            <div key={propertyName} className="flex items-center space-x-1 bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
               <span>{propertyName}</span>
-              <button
+              <button 
                 onClick={(e) => {
                   e.stopPropagation();
                   handlePropertyToggle(propertyName);
