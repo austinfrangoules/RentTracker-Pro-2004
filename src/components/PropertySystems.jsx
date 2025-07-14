@@ -69,8 +69,8 @@ const ConditionBadge = ({ condition }) => {
   
   return (
     <span className={`px-2 py-1 rounded-full text-xs font-medium ${colors[condition]}`}>
-      {condition}
-    </span>
+  {condition}
+</span>
   );
 };
 
