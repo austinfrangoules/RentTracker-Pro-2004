@@ -1,3 +1,4 @@
+```jsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -5,12 +6,13 @@ import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
 const { 
-  FiHome,          // Dashboard
-  FiDollarSign,    // Finances
-  FiPackage,       // Inventory
-  FiBarChart2,     // Analytics
-  FiGrid,          // Properties (Grid of houses)
-  FiSettings,      // Settings
+  FiHome,        // Dashboard
+  FiDollarSign,  // Finances
+  FiPackage,     // Inventory
+  FiBarChart2,   // Analytics
+  FiGrid,        // Properties
+  FiUsers,       // Contractors (moved up)
+  FiSettings,    // Settings
   FiX,
   FiChevronLeft,
   FiChevronRight
@@ -18,36 +20,13 @@ const {
 
 const Sidebar = ({ isOpen, onClose, isMobile }) => {
   const menuItems = [
-    {
-      name: 'Dashboard',
-      icon: FiHome,
-      path: '/'
-    },
-    {
-      name: 'Finances',
-      icon: FiDollarSign,
-      path: '/finances'
-    },
-    {
-      name: 'Inventory',
-      icon: FiPackage,
-      path: '/inventory'
-    },
-    {
-      name: 'Analytics',
-      icon: FiBarChart2,
-      path: '/analytics'
-    },
-    {
-      name: 'Properties',
-      icon: FiGrid,
-      path: '/properties'
-    },
-    {
-      name: 'Settings',
-      icon: FiSettings,
-      path: '/settings'
-    }
+    { name: 'Dashboard', icon: FiHome, path: '/' },
+    { name: 'Finances', icon: FiDollarSign, path: '/finances' },
+    { name: 'Inventory', icon: FiPackage, path: '/inventory' },
+    { name: 'Analytics', icon: FiBarChart2, path: '/analytics' },
+    { name: 'Contractors', icon: FiUsers, path: '/contractors' }, // Moved up
+    { name: 'Properties', icon: FiGrid, path: '/properties' },
+    { name: 'Settings', icon: FiSettings, path: '/settings' }
   ];
 
   return (
@@ -56,7 +35,7 @@ const Sidebar = ({ isOpen, onClose, isMobile }) => {
       {isOpen && isMobile && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40" 
-          onClick={onClose} 
+          onClick={onClose}
         />
       )}
 
@@ -89,7 +68,7 @@ const Sidebar = ({ isOpen, onClose, isMobile }) => {
               >
                 <SafeIcon 
                   icon={isOpen ? FiChevronLeft : FiChevronRight} 
-                  className="w-5 h-5" 
+                  className="w-5 h-5"
                 />
               </button>
             )}
@@ -149,3 +128,4 @@ const Sidebar = ({ isOpen, onClose, isMobile }) => {
 };
 
 export default Sidebar;
+```

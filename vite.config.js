@@ -10,8 +10,32 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-   build: {
+  build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['framer-motion', 'react-icons', 'recharts'],
+          supabase: ['@supabase/supabase-js']
+        }
+      }
+    }
   },
+  server: {
+    port: 3000,
+    cors: true
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+      'react-icons',
+      'recharts',
+      '@supabase/supabase-js'
+    ]
+  }
 });

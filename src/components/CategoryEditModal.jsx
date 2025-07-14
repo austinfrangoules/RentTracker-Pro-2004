@@ -21,12 +21,11 @@ const CategoryEditModal = ({ isOpen, onClose, category }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!categoryName.trim()) {
       alert('Please enter a category name');
       return;
     }
-    
+
     if (categoryName === category.name) {
       onClose();
       return;
@@ -34,9 +33,14 @@ const CategoryEditModal = ({ isOpen, onClose, category }) => {
 
     setIsLoading(true);
     try {
-      await updateCustomCategory(category.name, categoryName, category.type, category.property);
+      await updateCustomCategory(
+        category.name,
+        categoryName,
+        category.type,
+        category.property
+      );
       setSuccessMessage(`✅ Successfully updated category to "${categoryName}"!`);
-      
+
       // Auto-close after 2 seconds
       setTimeout(() => {
         onClose();
