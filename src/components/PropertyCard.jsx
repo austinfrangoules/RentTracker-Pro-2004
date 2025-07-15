@@ -1,3 +1,4 @@
+```jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -7,57 +8,55 @@ import * as FiIcons from 'react-icons/fi';
 
 const { FiMapPin, FiDollarSign, FiCalendar, FiEdit2, FiTrash2, FiTrendingUp, FiUsers, FiHome, FiEye } = FiIcons;
 
-const PropertyCard = ({ property, onEdit, onView }) => {
+const PropertyCard = ({ property, onEdit }) => {
   const { deleteProperty } = useData();
   const navigate = useNavigate();
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'occupied': return 'bg-yellow-100 text-yellow-800';
-      case 'vacant': return 'bg-green-100 text-green-800';
-      case 'maintenance': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'occupied':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'vacant':
+        return 'bg-green-100 text-green-800';
+      case 'maintenance':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.stopPropagation(); // Prevent navigation when clicking delete
     if (window.confirm('Are you sure you want to delete this property?')) {
       deleteProperty(property.id);
     }
   };
 
-  const handleViewProfile = () => {
-    if (onView) {
-      onView();
-    } else {
-      navigate(`/properties/${property.id}`);
-    }
+  const handleEdit = (e) => {
+    e.stopPropagation(); // Prevent navigation when clicking edit
+    onEdit(property);
+  };
+
+  const handleClick = () => {
+    navigate(`/properties/${property.id}`);
   };
 
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover"
+      className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover cursor-pointer"
+      onClick={handleClick}
     >
-      <div 
-        className="h-48 bg-gray-200 overflow-hidden cursor-pointer" 
-        onClick={handleViewProfile}
-      >
-        <img 
-          src={property.image} 
-          alt={property.name} 
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
+      <div className="h-48 bg-gray-200 overflow-hidden">
+        <img
+          src={property.image}
+          alt={property.name}
+          className="w-full h-full object-cover"
         />
       </div>
-      
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
-          <h3 
-            className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors"
-            onClick={handleViewProfile}
-          >
-            {property.name}
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-800">{property.name}</h3>
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(property.status)}`}>
             {property.status}
           </span>
@@ -72,12 +71,6 @@ const PropertyCard = ({ property, onEdit, onView }) => {
             <SafeIcon icon={FiDollarSign} className="w-4 h-4 mr-2" />
             ${property.monthlyRevenue?.toLocaleString() || 0} / month
           </div>
-          {property.nextCheckout && (
-            <div className="flex items-center text-sm text-gray-600">
-              <SafeIcon icon={FiCalendar} className="w-4 h-4 mr-2" />
-              Next checkout: {new Date(property.nextCheckout).toLocaleDateString()}
-            </div>
-          )}
         </div>
 
         {/* Enhanced metrics */}
@@ -106,36 +99,31 @@ const PropertyCard = ({ property, onEdit, onView }) => {
             <span>{property.occupancyRate || 0}%</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+            <div
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${property.occupancyRate || 0}%` }}
             />
           </div>
         </div>
 
-        {/* Fee Information */}
-        <div className="flex justify-between text-xs text-gray-500 mb-4 p-2 bg-gray-50 rounded">
-          <span>Cleaning: ${property.cleaningFee || 0}</span>
-          <span>Pet: ${property.petFee || 0}</span>
-        </div>
-
         <div className="flex space-x-2">
           <button
-            onClick={handleViewProfile}
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/properties/${property.id}`);
+            }}
             className="flex-1 bg-gray-100 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2"
           >
             <SafeIcon icon={FiEye} className="w-4 h-4" />
             <span>View</span>
           </button>
-          
           <button
-            onClick={onEdit}
+            onClick={handleEdit}
             className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
           >
             <SafeIcon icon={FiEdit2} className="w-4 h-4" />
             <span>Edit</span>
           </button>
-          
           <button
             onClick={handleDelete}
             className="bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
@@ -149,3 +137,4 @@ const PropertyCard = ({ property, onEdit, onView }) => {
 };
 
 export default PropertyCard;
+```
